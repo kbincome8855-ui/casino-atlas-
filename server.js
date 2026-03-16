@@ -32,7 +32,18 @@ app.get("/casino/:slug",(req,res)=>{
 })
 
 app.get("/go/:slug",(req,res)=>{
+app.get("/category/:type",(req,res)=>{
 
+ const type = req.params.type
+
+ const results = casinos.filter(c => c.type === type)
+
+ res.json({
+  category:type,
+  casinos:results
+ })
+
+})
  const casino = casinos.find(c => c.slug === req.params.slug)
 
  if(!casino){
