@@ -48,3 +48,20 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT,()=>{
  console.log(`Server running on ${PORT}`)
 })
+app.get("/search",(req,res)=>{
+
+ const {type,crypto} = req.query
+
+ let results = casinos
+
+ if(type){
+  results = results.filter(c => c.type === type)
+ }
+
+ if(crypto){
+  results = results.filter(c => c.crypto === true)
+ }
+
+ res.json(results)
+
+})
